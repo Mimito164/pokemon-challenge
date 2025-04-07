@@ -24,11 +24,13 @@ export class BattleService {
     if (!challenger || !rival) throw new Error('lcdtm');
     const winner = this.computeWinner(challenger, rival);
 
-    this.battlesRepository.create({
+    const battle_instance = this.battlesRepository.create({
       challenger: challenger._id,
       rival: rival._id,
       winner: winner._id,
     });
+
+    await this.battlesRepository.save(battle_instance);
 
     return winner;
   }
