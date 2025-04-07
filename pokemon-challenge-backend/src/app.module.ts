@@ -7,8 +7,8 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+import { dataSourceOptions } from '../db/data-source';
 import { PokemonsModule } from './pokemons/pokemons.module'; // Seguro lo voy a necesitar pero de momento no.
-import { PokemonEntity } from './pokemons/pokemon.entity';
 import { BattlesModule } from './battles/battles.module';
 
 @Dependencies(DataSource)
@@ -27,18 +27,8 @@ import { BattlesModule } from './battles/battles.module';
       },
       exclude: ['/api/{*slug}'],
     }),
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db.sqlite',
-      // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-      entities: [PokemonEntity],
-      migrations: [],
-      logging: 'all',
-      logger: 'file',
-      synchronize: false,
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     PokemonsModule,
-    BattlesModule,
     BattlesModule,
   ],
   controllers: [AppController],
