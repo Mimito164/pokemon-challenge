@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { PokemonEntity } from './pokemons.entity';
+import { PokemonEntity } from './pokemon.entity';
 
 @Injectable()
-export class PokemonsService {
+export class PokemonService {
   constructor(
     @InjectRepository(PokemonEntity)
     private pokemonsRepository: Repository<PokemonEntity>,

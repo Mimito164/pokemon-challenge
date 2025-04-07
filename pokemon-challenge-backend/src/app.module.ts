@@ -8,9 +8,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { PokemonsModule } from './pokemons/pokemons.module'; // Seguro lo voy a necesitar pero de momento no.
-import { PokemonEntity } from './pokemons/pokemons.entity';
+import { PokemonEntity } from './pokemons/pokemon.entity';
 import { BattlesModule } from './battles/battles.module';
-import { BattleModule } from './battle/battle.module';
 
 @Dependencies(DataSource)
 @Module({
@@ -40,7 +39,7 @@ import { BattleModule } from './battle/battle.module';
     }),
     PokemonsModule,
     BattlesModule,
-    BattleModule,
+    BattlesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
