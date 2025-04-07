@@ -13,4 +13,8 @@ export class PokemonService {
   findall(): Promise<PokemonEntity[]> {
     return this.pokemonsRepository.find();
   }
+
+  findById(id: string): Promise<PokemonEntity | null> {
+    return this.pokemonsRepository.findOneBy({ _id: id });
+  }
 }
