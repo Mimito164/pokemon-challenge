@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 
 import { BattleEntity } from './battle.entity';
 import { PokemonService } from 'src/pokemons/pokemon.service';
+import { PokemonEntity } from 'src/pokemons/pokemon.entity';
 
 @Injectable()
 export class BattleService {
@@ -13,9 +14,27 @@ export class BattleService {
     private readonly pokemonService: PokemonService,
   ) {}
 
-  create(challenger: string, rival: string): string {
-    console.log(challenger, rival);
-    const newBattleEntity = this.battlesRepository.create();
-    return newBattleEntity.winner;
+  async createBattle(
+    challengerId: string,
+    rivalId: string,
+  ): Promise<PokemonEntity> {
+    const challenger = await this.pokemonService.findById(challengerId);
+    const rival = await this.pokemonService.findById(rivalId);
+
+    if (!challenger || !rival) throw new Error('lcdtm');
+    const winner = this.computeWinner(challenger, rival);
+
+    this.battlesRepository.create({
+      challenger: challenger._id,
+      rival: rival._id,
+      winner: winner._id,
+    });
+
+    return winner;
+  }
+
+  private computeWinner(challenger: PokemonEntity, rival: PokemonEntity) {
+    console.log(rival);
+    return challenger;
   }
 }
