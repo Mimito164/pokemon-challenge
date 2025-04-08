@@ -40,12 +40,17 @@ function App() {
   };
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/pokemons')
-      .then((res) => res.json())
-      .then((res: Pokemon[]) => {
-        setPokemons(res);
-      })
-      .catch(console.log);
+    const fetchPokemons = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/pokemons');
+        const response_json = (await response.json()) as Pokemon[];
+        setPokemons(response_json);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    void fetchPokemons();
   }, []);
 
   return (
