@@ -1,5 +1,11 @@
-import { Controller, ParseUUIDPipe, Post, Body } from '@nestjs/common';
-import { BattleService } from './battle.service';
+import {
+  Controller,
+  ParseUUIDPipe,
+  Post,
+  Body,
+  HttpException,
+} from '@nestjs/common';
+import { BattleService, PokemonNotFoundError } from './battle.service';
 
 @Controller('battles')
 export class BattlesController {
@@ -7,13 +13,26 @@ export class BattlesController {
 
   @Post()
   async create(
-    @Body('challenger', ParseUUIDPipe) challenger: string,
-    @Body('rival', ParseUUIDPipe) rival: string,
+    @Body('challengerId', new ParseUUIDPipe({ version: '4' }))
+    challengerId: string,
+    @Body('rivalId', new ParseUUIDPipe({ version: '4' })) rivalId: string,
   ) {
-    const winner = await this.battleService.createBattle(challenger, rival);
-    return {
-      message: 'created battle succesfully',
-      winner,
-    };
+    try {
+      const winner = await this.battleService.createBattle(
+        challengerId,
+        rivalId,
+      );
+
+      return {
+        message: 'created battle succesfully',
+        winner,
+      };
+    } catch (error) {
+      if (error instanceof PokemonNotFoundError) {
+        throw new HttpException(error.message, 404);
+      } else {
+        throw error;
+      }
+    }
   }
 }
