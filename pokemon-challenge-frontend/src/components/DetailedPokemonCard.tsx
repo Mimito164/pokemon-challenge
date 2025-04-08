@@ -19,7 +19,10 @@ export default function DetailedPokemonCard({
   return (
     <>
       {pokemon ? (
-        <Card variant="outlined" sx={{ width: 300, boxShadow: 5 }}>
+        <Card
+          variant="outlined"
+          sx={{ width: 300, boxShadow: 5, marginTop: 2 }}
+        >
           <CardMedia
             image={pokemon.imageUrl}
             sx={{ margin: 'auto', width: 200, height: 200 }}

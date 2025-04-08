@@ -17,11 +17,10 @@ export const PokemonCard = ({
         variant="outlined"
         data-active={selected ? '' : undefined}
         sx={{
-          width: 150,
           padding: 1,
           boxShadow: 5,
           borderRadius: 2,
-          margin: 1,
+          marginTop: 5,
           '&[data-active]': {
             outlineColor: green[300],
             outlineWidth: 2,
@@ -34,7 +33,7 @@ export const PokemonCard = ({
       >
         <CardMedia
           image={pokemon.imageUrl}
-          sx={{ height: 100, width: 100, margin: 'auto' }}
+          sx={{ height: 130, width: 130, margin: 'auto' }}
         />
         <Typography variant="h6">{pokemon.name}</Typography>
       </Card>

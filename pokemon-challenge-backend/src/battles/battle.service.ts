@@ -21,10 +21,7 @@ export class BattleService {
     private readonly pokemonService: PokemonService,
   ) {}
 
-  async createBattle(
-    challengerId: string,
-    rivalId: string,
-  ): Promise<PokemonEntity> {
+  async createBattle(challengerId: string, rivalId: string): Promise<PokemonEntity> {
     const challenger = await this.pokemonService.findById(challengerId);
     const rival = await this.pokemonService.findById(rivalId);
 
@@ -45,7 +42,31 @@ export class BattleService {
   }
 
   private computeWinner(challenger: PokemonEntity, rival: PokemonEntity) {
-    console.log(rival);
-    return challenger;
+    let challenger_turn;
+    if (challenger.speed == rival.speed) {
+      challenger_turn = challenger.attack > rival.attack ? true : false;
+    } else {
+      challenger_turn = challenger.speed > rival.speed ? true : false;
+    }
+
+    let turn = 0;
+    while (challenger.hp > 0 && rival.hp > 0) {
+      if (challenger_turn) {
+        const damage_dealed = Math.max(challenger.attack - rival.defense, 1);
+        rival.hp -= damage_dealed;
+      } else {
+        const damage_dealed = Math.max(rival.attack - challenger.defense, 1);
+        challenger.hp -= damage_dealed;
+      }
+      turn++;
+      console.log('Turn', turn);
+      console.log('challenger\n', challenger);
+      console.log('rival\n', rival);
+      console.log('\n\n\n');
+
+      challenger_turn = !challenger_turn;
+    }
+
+    return challenger.hp > rival.hp ? challenger : rival;
   }
 }
