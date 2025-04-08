@@ -19,6 +19,7 @@ import { BattlesModule } from './battles/battles.module';
         __dirname,
         '..',
         '..',
+        '..',
         'pokemon-challenge-frontend',
         'dist',
       ),
