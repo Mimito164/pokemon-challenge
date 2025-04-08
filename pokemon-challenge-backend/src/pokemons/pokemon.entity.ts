@@ -1,4 +1,3 @@
-// import {Entity, PrimaryGeneratedColumn, Column, JoinTable, ManyToMany, OneToMany} from 'typeorm';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity('pokemon')
