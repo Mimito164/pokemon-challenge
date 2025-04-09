@@ -57,6 +57,7 @@ export default function DetailedPokemonCard({
               color: 'lightgray',
               height: 440,
               boxShadow: 5,
+              marginTop: 2,
             }}
           >
             <Skeleton
