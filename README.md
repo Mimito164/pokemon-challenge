@@ -24,6 +24,7 @@ npm run start:prod
 ## Sobre la base de datos
 
 ```mermaid
-erDiagram LR
+erDiagram
+    direction RL
     POKEMON |o--o{ BATTLE : ""
 ```
