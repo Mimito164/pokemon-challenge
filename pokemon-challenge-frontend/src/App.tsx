@@ -69,7 +69,8 @@ function App() {
           Battle of Pokemon
         </Typography>
         <Typography variant="h4">Select your Pokemon</Typography>
-        <div
+
+        <Box
           id="card-selector"
           style={{
             display: 'flex',
@@ -88,7 +89,8 @@ function App() {
               />
             );
           })}
-        </div>
+        </Box>
+
         <Collapse in={winner != null}>
           <Box
             sx={{
@@ -101,11 +103,12 @@ function App() {
               boxShadow: 5,
             }}
           >
-            <Typography variant="h4">{winner?.name} is the winner!</Typography>
+            <Typography variant="h4">{winner?.name} wins!</Typography>
           </Box>
         </Collapse>
-        <div
-          style={{
+
+        <Box
+          sx={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -113,26 +116,26 @@ function App() {
           }}
         >
           <DetailedPokemonCard pokemon={selectedChallenger} />
-          <div>
-            <Button
-              variant="contained"
-              color="success"
-              onClick={handleStartBattle}
-              disabled={!selectedChallenger}
-              sx={{
-                textTransform: 'none',
-                paddingLeft: 3,
-                paddingRight: 3,
-                paddingTop: 1,
-                paddingBottom: 1,
-                marginTop: 2,
-              }}
-            >
-              <Typography variant="h6">Start Battle</Typography>
-            </Button>
-          </div>
+
+          <Button
+            variant="contained"
+            color="success"
+            onClick={handleStartBattle}
+            disabled={!selectedChallenger}
+            sx={{
+              textTransform: 'none',
+              paddingLeft: 3,
+              paddingRight: 3,
+              paddingTop: 1,
+              paddingBottom: 1,
+              marginTop: 2,
+            }}
+          >
+            <Typography variant="h6">Start Battle</Typography>
+          </Button>
+
           <DetailedPokemonCard pokemon={selectedRival} />
-        </div>
+        </Box>
       </Container>
     </>
   );

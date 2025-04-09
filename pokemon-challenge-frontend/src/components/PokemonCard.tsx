@@ -20,7 +20,8 @@ export const PokemonCard = ({
           padding: 1,
           boxShadow: 5,
           borderRadius: 2,
-          marginTop: 5,
+          marginTop: 3,
+          '&:hover': { cursor: 'pointer' },
           '&[data-active]': {
             outlineColor: green[300],
             outlineWidth: 2,

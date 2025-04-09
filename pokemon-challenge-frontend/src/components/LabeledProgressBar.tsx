@@ -1,4 +1,4 @@
-import { LinearProgress } from '@mui/material';
+import { Box, LinearProgress, Typography } from '@mui/material';
 
 export function LabeledProgressBar({
   progressValue,
@@ -8,8 +8,8 @@ export function LabeledProgressBar({
   label: string;
 }) {
   return (
-    <div>
-      <label>{label}</label>
+    <Box>
+      <Typography>{label}</Typography>
       <LinearProgress
         variant="determinate"
         value={progressValue * (100 / 6)}
@@ -22,6 +22,6 @@ export function LabeledProgressBar({
           },
         }}
       />
-    </div>
+    </Box>
   );
 }
