@@ -15,14 +15,7 @@ import { BattlesModule } from './battles/battles.module';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(
-        __dirname,
-        '..',
-        '..',
-        '..',
-        'pokemon-challenge-frontend',
-        'dist',
-      ),
+      rootPath: join(__dirname, '..', '..', '..', 'pokemon-challenge-frontend', 'dist'),
       serveStaticOptions: {
         fallthrough: false,
       },
