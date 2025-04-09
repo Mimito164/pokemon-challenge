@@ -49,7 +49,6 @@ export class BattleService {
       challenger_turn = challenger.speed > rival.speed ? true : false;
     }
 
-    let turn = 0;
     while (challenger.hp > 0 && rival.hp > 0) {
       if (challenger_turn) {
         const damage_dealed = Math.max(challenger.attack - rival.defense, 1);
@@ -58,11 +57,6 @@ export class BattleService {
         const damage_dealed = Math.max(rival.attack - challenger.defense, 1);
         challenger.hp -= damage_dealed;
       }
-      turn++;
-      console.log('Turn', turn);
-      console.log('challenger\n', challenger);
-      console.log('rival\n', rival);
-      console.log('\n\n\n');
 
       challenger_turn = !challenger_turn;
     }
