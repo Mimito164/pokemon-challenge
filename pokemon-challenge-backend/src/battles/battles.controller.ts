@@ -1,18 +1,18 @@
-import { Controller, ParseUUIDPipe, Post, Body, HttpException } from '@nestjs/common';
+import { Controller, Post, Body, HttpException } from '@nestjs/common';
 import { BattleService, PokemonNotFoundError } from './battle.service';
+import { CreateBattleDto } from './battle.dto';
 
 @Controller('battles')
 export class BattlesController {
   constructor(private readonly battleService: BattleService) {}
 
   @Post()
-  async create(
-    @Body('challengerId', new ParseUUIDPipe({ version: '4' }))
-    challengerId: string,
-    @Body('rivalId', new ParseUUIDPipe({ version: '4' })) rivalId: string,
-  ) {
+  async create(@Body() createBattleDto: CreateBattleDto) {
     try {
-      const winner = await this.battleService.createBattle(challengerId, rivalId);
+      const winner = await this.battleService.createBattle(
+        createBattleDto.challengerId,
+        createBattleDto.rivalId,
+      );
 
       return {
         message: 'created battle succesfully',
